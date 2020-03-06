@@ -32,7 +32,7 @@ $ git switch dev  #切换分支到dev
 $ git branch      #查看所有分支,当前分支由*标出
 ```
 
-为**git switch**命令添加**-c**参数，可以在创建新分支之后直接切换到新分支。
+为**git switch**命令添加 **-c** 参数，可以在创建新分支之后直接切换到新分支。
 
 ```bash
 $ git switch -c dev  #创建并切换分支到dev
@@ -118,9 +118,9 @@ $ git log --graph --pretty=oneline --abbrev-commit
 * e6100e5 master new commit
 ```
 
-若要禁用**Fast forward**模式，Git会在合并时生成一个新的**commit**，这样就能从分支历史上看到分支信息，实现方式在合并分支时添加**--no-ff**参数即可。
+若要禁用**Fast forward**模式，Git会在合并时生成一个新的**commit**，这样就能从分支历史上看到分支信息，实现方式在合并分支时添加 **--no-ff** 参数即可。
 
-特别地，由于生成了一个新的**commit**，因此也需要添加**-m**参数。
+特别地，由于生成了一个新的**commit**，因此也需要添加 **-m** 参数。
 
 ```bash
 $ git merge --no-ff -m "merge with no-ff" test2
