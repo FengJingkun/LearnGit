@@ -234,3 +234,64 @@ $ git restore --staged QuickStart.md
 
 
 
+### 标签管理
+
+为了方便管理版本库中的所有版本，Git可以给历史版本中的某个打标签，实际应用中用户通常使用标签来标记某次重要的发布结点（v1.0等）。一个标签实际上是指向某个commit的指针，标签一旦指向某个commit后，便不能再指向别的commit。
+
+#### 创建标签
+
+创建标签时，使用 **git tag** 命令即可。特别地，使用 **git tag** 可以查看所有标签。
+
+```bash
+$ git tag v1.0
+$ git tag
+v1.0
+```
+
+默认标签总是打在最新的提交对象上的，若要对某个历史提交打标签，只需要找到对应的commit id，然后打上就可以了。
+
+```bash
+$ git log --pretty=oneline --abbrev-commit  #寻找commit id
+$ git tag v0.5 f52c633                      #为指定版本打标签
+$ git tag                                   #查看所有标签
+v0.5
+```
+
+若要查看标签的具体信息，使用 **git show** 即可。
+
+```bash
+$ git show v0.5
+commit f52c63349bc3c1593499807e5c8e972b82c8f286 (tag: v0.5)
+Author: Kakashi <kakashi@hokaki.com>
+...
+```
+
+若在创建标签时添加一些说明信息，使用 **-a** 参数指定标签名，使用 **-m** 参数指定说明文字。
+
+```bash
+$ git tag -a v0.1 -m "version 0.1 released" f15b0dd
+```
+
+#### 删除标签
+
+由于创建的标签只存储在本地，不会自动推送到远程仓库，因此只需要在**git tag**命令中添加 **-d** 参数即可安全删除标签。
+
+```bash
+$ git tag -d v0.1
+Deleted tag 'v0.1' (was f15b0dd)
+```
+
+#### 推送标签到远程
+
+```bash
+$ git push origin v1.0    #将某个标签推送至远程仓库origin
+$ git push origin --tags  #将所有本地标签推送至远程仓库origin
+```
+
+#### 删除远程标签
+
+```bash
+$ git tag -d v0.1                #首先需要删除本地标签
+git push origin :refs/tags/v0.1  #然后删除远程标签
+```
+
